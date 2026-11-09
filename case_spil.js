@@ -15,37 +15,30 @@ if (!game) {
     const reserveButton = document.getElementById("reserve-button");
     const reserveLabel = document.getElementById("reserve-label");
     const placementMessage = document.getElementById("placement-message");
-    const statusMessage = document.getElementById("reservation-status");
-    const badge = document.querySelector(".reservation-badge");
 
-    function getReservedGames() {
-        return JSON.parse(localStorage.getItem("reservedGames") || "[]");
+    // Fjerner kun den gamle reservationsnøgle. Togglen nedenfor er ren visning
+    // og gemmer derfor aldrig en reservation i browseren.
+    try {
+        localStorage.removeItem("reservedGames");
+    } catch (error) {
+        // Siden fungerer stadig, hvis browseren har blokeret lokal lagring.
     }
 
-    function renderReservation() {
-        const reservedGames = getReservedGames();
-        const isReserved = reservedGames.includes(game.id);
-        reserveButton.classList.toggle("reserved", isReserved);
-        reserveButton.setAttribute("aria-pressed", String(isReserved));
-        reserveLabel.textContent = isReserved ? "Reservering gennemført" : "Reserver spillet";
-        placementMessage.innerHTML = isReserved
-            ? "<strong>FIND SPILLET PÅ HYLDE B1</strong><small>Aflever under Profil</small>"
+    let showReservedState = false;
+
+    function renderVisualState() {
+        reserveButton.classList.toggle("reserved", showReservedState);
+        reserveButton.setAttribute("aria-pressed", String(showReservedState));
+        reserveLabel.textContent = showReservedState ? "Reserveret tilstand vist" : "Vis reserveret tilstand";
+        placementMessage.innerHTML = showReservedState
+            ? "<strong>EKSEMPEL: FIND SPILLET PÅ HYLDE B1</strong><small>Kun visning – ingen reservation er gemt</small>"
             : "<strong>Spillets placering kommer<br>efter reservation</strong>";
-        badge.textContent = reservedGames.length;
-        badge.hidden = reservedGames.length === 0;
     }
 
     reserveButton.addEventListener("click", () => {
-        const reservedGames = getReservedGames();
-        if (!reservedGames.includes(game.id)) {
-            reservedGames.push(game.id);
-            localStorage.setItem("reservedGames", JSON.stringify(reservedGames));
-            statusMessage.textContent = `${game.title} er nu reserveret.`;
-        } else {
-            statusMessage.textContent = `${game.title} er allerede reserveret.`;
-        }
-        renderReservation();
+        showReservedState = !showReservedState;
+        renderVisualState();
     });
 
-    renderReservation();
+    renderVisualState();
 }

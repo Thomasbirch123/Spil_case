@@ -19,7 +19,7 @@ Detaljevisningen er i denne løsning lavet som en selvstændig side. Hvert kort 
 
 ## Åbn løsningen
 
-Åbn `index.html` i en browser. Klik på et af de 12 spil for at åbne detaljesiden. Reservationen gemmes lokalt i browseren og kan ses som et badge ved profilikonet.
+Åbn `index.html` i en browser. Klik på et af de 12 spil for at åbne detaljesiden. Reservationstogglen er kun en visuel prototype: den gemmer ingen reservation og viser ikke et badge ved profilikonet.
 
 ## Implementeret
 
@@ -28,6 +28,6 @@ Detaljevisningen er i denne løsning lavet som en selvstændig side. Hvert kort 
 - søgning med tekstfelt og knappen “Søg” (`toLowerCase`, `trim`, `includes`)
 - kombinerede filtre for spillere, kategori, spilletid og sværhedsgrad (`filter`, `includes`)
 - sortering efter titel eller spilletid (`sort`)
-- individuel detaljevisning med info, regler og reservationstilstand
+- individuel detaljevisning med info, regler og en rent visuel reservationstilstand
 
 

@@ -160,8 +160,6 @@ button, select { cursor: pointer; }
     font: 32px/1 system-ui, sans-serif;
 }
 .bottom-nav a.active { color: #fff; background: #17191b; }
-.reservation-badge { position: absolute; top: -8px; right: -8px; min-width: 22px; height: 22px; padding: 2px 6px; border-radius: 99px; color: #fff; background: #ff6269; font: 700 12px/18px Arial, sans-serif; text-align: center; }
-
 @media (min-width: 700px) {
     body { background: #edf1f2; }
     .app-shell { box-shadow: 0 0 35px rgba(23, 39, 43, .12); }
