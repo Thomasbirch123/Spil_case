@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Læs om spillet, se reglerne og reservér det i Spilcaféen.">
+    <title>Spildetaljer · Spilcaféen</title>
+    <link rel="stylesheet" href="case_style.css">
+</head>
+<body>
+    <div class="detail-shell">
+        <main class="detail-main">
+            <a class="back-link" href="index.html" aria-label="Tilbage til spiloversigten">←</a>
+
+            <div class="cover-stage">
+                <img id="game-cover" src="" alt="">
+            </div>
+
+            <article class="game-copy">
+                <h1 id="game-title"></h1>
+
+                <section aria-labelledby="info-heading">
+                    <h2 id="info-heading">Info om spillet</h2>
+                    <p id="game-info"></p>
+                </section>
+
+                <section aria-labelledby="rules-heading">
+                    <h2 id="rules-heading">Regler</h2>
+                    <p id="game-rules"></p>
+                </section>
+
+                <div class="placement" id="placement-message">
+                    <strong>Spillets placering kommer<br>efter reservation</strong>
+                </div>
+
+                <button class="reserve-button" id="reserve-button" type="button">
+                    <span class="reserve-dot" aria-hidden="true"></span>
+                    <span id="reserve-label">Reserver spillet</span>
+                </button>
+                <p class="reservation-status" id="reservation-status" aria-live="polite"></p>
+            </article>
+        </main>
+
+        <nav class="bottom-nav" aria-label="Primær navigation">
+            <a href="index.html" aria-label="Hjem">⌂</a>
+            <a href="index.html" aria-label="Søg">⌕</a>
+            <a href="#" aria-label="Reservationer">♢</a>
+            <a class="profile-link" href="#" aria-label="Profil">◎<span class="reservation-badge" hidden>0</span></a>
+        </nav>
+    </div>
+    <script src="data.js"></script>
+    <script src="case_spil.js"></script>
+</body>
+</html>

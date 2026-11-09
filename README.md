@@ -15,8 +15,19 @@ I skal desuden bruge mindst én mængdeoperation meningsfuldt, fx:
 Bruge includes til at afgøre, om et spils kategori (element) findes blandt de valgte filterkriterier (mængden)
 Kombiner flere filtre som en fællesmængde (spil, der passer på alle valgte filtre)
 Kombiner flere attribut-værdier som en foreningsmængde (spil, der passer på mindst én af dem)
-Hvis I har tid og lyst, kan I vise et spils detaljer i en <dialog>. Det er ikke et krav, og det er ikke en del af det, vi har gennemgået i undervisningen, så kun hvis I vil udfordre jer selv.
+Detaljevisningen er i denne løsning lavet som en selvstændig side. Hvert kort på oversigten sender spillets id med i adressen, og `case_spil.js` finder det korrekte spil i det fælles array i `data.js`.
 
-Husk to gode principper om søgning: Et søgefelt er et tekstfelt med en knap, der hedder ”Søg”, og brugeren skal kunne filtrere sine søgeresultater. 
+## Åbn løsningen
+
+Åbn `index.html` i en browser. Klik på et af de 12 spil for at åbne detaljesiden. Reservationen gemmes lokalt i browseren og kan ses som et badge ved profilikonet.
+
+## Implementeret
+
+- 12 spil med egne data og lokale SVG-forsider
+- kort bygget med `forEach`
+- søgning med tekstfelt og knappen “Søg” (`toLowerCase`, `trim`, `includes`)
+- kombinerede filtre for spillere, kategori, spilletid og sværhedsgrad (`filter`, `includes`)
+- sortering efter titel eller spilletid (`sort`)
+- individuel detaljevisning med info, regler og reservationstilstand
 
 

@@ -1,146 +1,82 @@
 <!DOCTYPE html>
 <html lang="da">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produkt Søgning</title>
+    <meta name="description" content="Find og reservér bræt- og selskabsspil i Spilcaféen.">
+    <title>Find et spil · Spilcaféen</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="container">
-        <header>
-            <h1>Produkt Katalog</h1>
+    <div class="app-shell">
+        <header class="topbar" aria-label="Spilcaféen">
+            <a class="logo" href="index.html" aria-label="Spilcaféens forside">▦</a>
         </header>
-
         <main>
-            <div class="search-container">
-                <input type="search" id="search-input" placeholder="Søg efter produkter..." class="search-input">
-
-                <select id="predefined-search" class="predefined-select">
-                    <option value="">---- Sorter efter ----</option>
-                    <option value="populaere">Mest populære</option>
-                    <option value="pris-stigende">Pris: Lav til høj</option>
-                    <option value="pris-faldende">Pris: Høj til lav</option>
+            <section class="search-band" aria-labelledby="page-title">
+                <h1 id="page-title" class="sr-only">Find et spil</h1>
+                <label class="search-box">
+                    <span class="sr-only">Søg efter spil</span>
+                    <input type="search" id="search-input" placeholder="SØG EFTER SPIL" autocomplete="off">
+                    <span aria-hidden="true">⌕</span>
+                </label>
+                <button id="search-button" class="search-button" type="button">Søg</button>
+                <button id="filter-toggle" class="filter-button" type="button" aria-expanded="false" aria-controls="filter-panel" aria-label="Åbn filter">☷</button>
+            </section>
+            <label class="sort-control">Sortér
+                <select id="sort-select">
+                    <option value="standard">Udvalgt rækkefølge</option>
+                    <option value="title-asc">Navn: A–Å</option>
+                    <option value="time-asc">Korteste spilletid</option>
+                    <option value="time-desc">Længste spilletid</option>
                 </select>
-
-                <button id="filter-toggle" class="filter-button">
-                    <span>🔍 Filtrer</span>
-                </button>
-            </div>
-
-            <div id="filter-panel" class="filter-panel">
+            </label>
+            <aside id="filter-panel" class="filter-panel" aria-hidden="true">
                 <div class="filter-header">
-                    <h2>Filtrer Produkter</h2>
-                    <button id="close-filter" class="close-button">&times;</button>
+                    <h2>Filter</h2>
+                    <button id="close-filter" type="button" aria-label="Luk filter">×</button>
                 </div>
-
-                <div class="filter-content">
-                    <div class="filter-group">
-                        <label class="filter-label">Kategori</label>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="category" value="elektronik"> Elektronik
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="category" value="tøj"> Tøj
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="category" value="møbler"> Møbler
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="category" value="bøger"> Bøger
-                            </label>
-                        </div>
+                <fieldset>
+                    <legend>Antal spillere</legend>
+                    <div class="player-filters">
+                        <label><input type="checkbox" name="players" value="2"><span>2</span></label>
+                        <label><input type="checkbox" name="players" value="4"><span>4</span></label>
+                        <label><input type="checkbox" name="players" value="5"><span>5+</span></label>
                     </div>
-
-                    <div class="filter-group">
-                        <label class="filter-label">Pris interval</label>
-                        <div class="price-range">
-                            <input type="number" id="min-price" placeholder="Min pris" class="price-input">
-                            <span class="price-separator">-</span>
-                            <input type="number" id="max-price" placeholder="Max pris" class="price-input">
-                        </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Kategori</legend>
+                    <div id="category-filters" class="category-filters"></div>
+                </fieldset>
+                <fieldset>
+                    <legend>Spilletid: højst <output id="time-output">120</output> min.</legend>
+                    <input id="time-range" type="range" min="15" max="120" step="15" value="120">
+                </fieldset>
+                <fieldset>
+                    <legend>Sværhedsgrad</legend>
+                    <div class="difficulty-filters">
+                        <label><input type="radio" name="difficulty" value=""><span>Alle</span></label>
+                        <label><input type="radio" name="difficulty" value="Let"><span>Let</span></label>
+                        <label><input type="radio" name="difficulty" value="Middel"><span>Middel</span></label>
                     </div>
-
-                    <div class="filter-group">
-                        <label class="filter-label">Vurdering</label>
-                        <div class="rating-group">
-                            <label class="rating-label">
-                                <input type="radio" name="rating" value="5"> ★★★★★
-                            </label>
-                            <label class="rating-label">
-                                <input type="radio" name="rating" value="4"> ★★★★
-                            </label>
-                            <label class="rating-label">
-                                <input type="radio" name="rating" value="3"> ★★★
-                            </label>
-                            <label class="rating-label">
-                                <input type="radio" name="rating" value="2"> ★★
-                            </label>
-                            <label class="rating-label">
-                                <input type="radio" name="rating" value="1"> ★
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="filter-group">
-                        <label class="filter-label">Farve</label>
-                        <div class="color-group">
-                            <label class="color-label">
-                                <input type="checkbox" name="color" value="rød"> Rød
-                            </label>
-                            <label class="color-label">
-                                <input type="checkbox" name="color" value="blå"> Blå
-                            </label>
-                            <label class="color-label">
-                                <input type="checkbox" name="color" value="grøn"> Grøn
-                            </label>
-                            <label class="color-label">
-                                <input type="checkbox" name="color" value="sort"> Sort
-                            </label>
-                            <label class="color-label">
-                                <input type="checkbox" name="color" value="hvid"> Hvid
-                            </label>
-                        </div>
-                    </div>
+                </fieldset>
+                <div class="filter-actions">
+                    <button id="reset-filters" class="secondary-button" type="button">Nulstil</button>
+                    <button id="apply-filters" class="primary-button" type="button">Gem</button>
                 </div>
-
-                <div class="filter-footer">
-                    <button id="apply-filters" class="apply-button">Vis Produkter</button>
-                </div>
-            </div>
-
-            <div id="products-container" class="products-container">
-            </div>
+            </aside>
+            <section id="products-container" class="games-grid" aria-live="polite"></section>
         </main>
-
-        <footer>
-            <p>&copy; 2026 Produkt Katalog</p>
-        </footer>
+        <nav class="bottom-nav" aria-label="Primær navigation">
+            <a href="index.html" aria-label="Hjem">⌂</a>
+            <a class="active" href="index.html" aria-current="page" aria-label="Søg">⌕</a>
+            <a href="#" aria-label="Reservationer">♢</a>
+            <a class="profile-link" href="#" aria-label="Profil">◎<span class="reservation-badge" hidden>0</span></a>
+        </nav>
     </div>
-
-    <dialog id="product-dialog">
-        <article class="dialog-content">
-            <img id="dialog-image" src="" alt="" class="product-image">
-            <h2 id="dialog-title"></h2>
-            <p id="dialog-description"></p>
-            <div class="product-meta">
-                <span id="dialog-price" class="product-price"></span>
-                <span id="dialog-category" class="product-category"></span>
-            </div>
-            <div id="dialog-rating" class="product-rating"></div>
-            <menu class="dialog-actions">
-                <button id="dialog-close" value="cancel">Luk</button>
-            </menu>
-        </article>
-    </dialog>
-
     <div id="overlay" class="overlay"></div>
     <script src="data.js"></script>
     <script src="scriptui.js"></script>
     <script src="scriptfilt.js"></script>
 </body>
-
 </html>
