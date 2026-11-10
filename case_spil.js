@@ -16,14 +16,6 @@ if (!game) {
     const reserveLabel = document.getElementById("reserve-label");
     const placementMessage = document.getElementById("placement-message");
 
-    // Fjerner kun den gamle reservationsnøgle. Togglen nedenfor er ren visning
-    // og gemmer derfor aldrig en reservation i browseren.
-    try {
-        localStorage.removeItem("reservedGames");
-    } catch (error) {
-        // Siden fungerer stadig, hvis browseren har blokeret lokal lagring.
-    }
-
     let showReservedState = false;
 
     function renderVisualState() {

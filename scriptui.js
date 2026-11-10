@@ -36,12 +36,4 @@ closeFilter.addEventListener("click", () => setFilterOpen(false));
 overlay.addEventListener("click", () => setFilterOpen(false));
 window.addEventListener("keydown", (event) => { if (event.key === "Escape") setFilterOpen(false); });
 
-// Rydder kun den tidligere reservationsnøgle. Oversigten læser eller viser
-// ikke reservationer, og der vises derfor heller ikke et tal ved Profil.
-try {
-    localStorage.removeItem("reservedGames");
-} catch (error) {
-    // Oversigten virker stadig, hvis browseren har blokeret lokal lagring.
-}
-
 displayProducts(games);

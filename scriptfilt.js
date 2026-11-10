@@ -20,7 +20,7 @@ function filterGames() {
     const playerCounts = [...document.querySelectorAll('input[name="players"]:checked')].map((input) => Number(input.value));
     const difficulty = document.querySelector('input[name="difficulty"]:checked')?.value || "";
     const maxTime = Number(timeRange.value);
-    let filtered = games.filter((game) => {
+    const filtered = games.filter((game) => {
         const haystack = `${game.title} ${game.category} ${game.info}`.toLowerCase();
         const matchesText = !query || haystack.includes(query);
         const matchesCategory = !selected.length || selected.includes(game.category);
